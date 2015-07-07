@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="co.realtime.CordovaPush" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:gap="http://phonegap.com/ns/1.0" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Adobe PhoneGap Build Push Notifications</name>
+    <description>
+        This project shows how to build an iOS/Android app able to receive APNA/GCM push notifications built using Adobe PhoneGap Build
+    </description>
+    <author email="framework@realtime.co" href="http://framework.realtime.co/messaging/">
+        Realtime
+    </author>
+    <content src="index.html" />
+    <plugin name="cordova-plugin-whitelist" version="1" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="android">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+    <gap:plugin name="co.realtime.plugins.cordovapush" version="0.1.4" />
+    <gap:platform name="ios" />
+    <gap:platform name="android" />
+</widget>
