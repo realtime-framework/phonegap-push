@@ -26,6 +26,15 @@
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <meta name="msapplication-tap-highlight" content="no" />
         <title>Hello World</title>
+        <script type="text/javascript">
+             document.addEventListener("deviceready",
+                      function () {
+                        if(window.plugins && window.plugins.OrtcPushPlugin){
+                                var OrtcPushPlugin = window.plugins.OrtcPushPlugin;
+                                OrtcPushPlugin.checkForNotifications();
+                         }
+                       }, false);
+        </script>
     </head>
     <body>
         <img src="img/realtime.png" alt="realtime logo" id="logo"/>
@@ -74,7 +83,6 @@
                                                        var subcribed = document.getElementById('subcribed');
                                                        subcribed.innerHTML = "subscribed: " + channel.value;
                                                        OrtcPushPlugin.log("subscribed: " + channel.value);
-                                                       window.plugins.OrtcPushPlugin.disconnect();
                                                        });                            
                               });
                }
@@ -86,7 +94,7 @@
                   var OrtcPushPlugin = window.plugins.OrtcPushPlugin;
                   OrtcPushPlugin.log("Clearing notifications");
                   OrtcPushPlugin.cancelAllLocalNotifications(function(){
-                                                             alert('Notifications cleared')
+                                                              alert('Notifications cleared')
                                                              });
               }
           };
@@ -97,7 +105,11 @@
                   var OrtcPushPlugin = window.plugins.OrtcPushPlugin;
                   var channelSend = document.getElementById('channel');
                   var messageSend = document.getElementById('channelMsg');
-                  OrtcPushPlugin.send({'channel':channelSend.value,'message':messageSend.value},function(){alert('Message sent!')},function(){alert('Error sending message!')});
+                  OrtcPushPlugin.send({'channel':channelSend.value,'message':messageSend.value},function(){
+                    alert('Message sent!')
+                  },function(){
+                    alert('Error sending message!')
+                  });
                   
               }
           };

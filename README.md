@@ -5,6 +5,18 @@ This project shows how to build an Android app able to receive APNS and GCM push
 
 - Create a Google project, more info [here](http://messaging-public.realtime.co/documentation/starting-guide/mobilePushGCM.html).
 
+- Add deviceready event listener to the HEAD section of your HTML page
+ 
+		<script type="text/javascript">
+		     document.addEventListener("deviceready",
+		              function () {
+		                if(window.plugins && window.plugins.OrtcPushPlugin){
+		                        var OrtcPushPlugin = window.plugins.OrtcPushPlugin;
+		                        OrtcPushPlugin.checkForNotifications();
+		                 }
+		               }, false);
+		</script>
+
 - Enter your Realtime Application Key and Google Project Number at the `OrtcPushPlugin.connect` call: 
 				
 - Set the `push-notification` event listener: 
@@ -17,7 +29,7 @@ This project shows how to build an Android app able to receive APNS and GCM push
 
 - Add the `CordovaPush` plugin to your `config.xml` file:
 
-		<gap:plugin name="co.realtime.plugins.cordovapush" version="0.1.4" />
+		<gap:plugin name="co.realtime.plugins.cordovapush" version="0.1.5" />
 		
 		
 ## Testing the app
