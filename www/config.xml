@@ -23,7 +23,7 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-    <gap:plugin name="co.realtime.plugins.cordovapush" version="0.1.5" />
+    <gap:plugin name="co.realtime.plugins.cordovapush" version="0.1.7" />
     <gap:platform name="ios" />
     <gap:platform name="android" />
 </widget>
