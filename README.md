@@ -29,7 +29,7 @@ This project shows how to build an Android app able to receive APNS and GCM push
 
 - Add the `CordovaPush` plugin to your `config.xml` file:
 
-		<gap:plugin name="co.realtime.plugins.cordovapush" version="0.1.5" />
+		<gap:plugin name="co.realtime.plugins.cordovapush" version="0.2.0" />
 		
 		
 ## Testing the app
