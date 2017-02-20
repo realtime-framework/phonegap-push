@@ -69,36 +69,42 @@
                 if(window.plugins && window.plugins.OrtcPushPlugin){
                     var OrtcPushPlugin = window.plugins.OrtcPushPlugin;
                     OrtcPushPlugin.log("Connecting");
-                    
-                    OrtcPushPlugin.connect({'appkey':'<YOUR_APPK_KEY>',
-                                           'token':'appToken',
-                                           'metadata':'androidMetadata',
-                                           'projectId':'<YOUR_GOOGLE_PROJECT_NUMBER>',
-                                           'url':'https://ortc-developers.realtime.co/server/ssl/2.1/'
-                                           }, function (){
-                                           OrtcPushPlugin.log("Connected: ");
-                                               var channel = document.getElementById('channel');
-                                               OrtcPushPlugin.log("Trying to subscribe: " + channel.value);
-                                               OrtcPushPlugin.subscribe({'channel':channel.value}, function (){
-                                                                        var subcribed = document.getElementById('subcribed');
-                                                                        subcribed.innerHTML = "subscribed: " + channel.value;
-                                                                        OrtcPushPlugin.log("subscribed: " + channel.value);
-                                                                        });
-                                           });
+
+                    OrtcPushPlugin.connect({
+                        'appkey':'<YOUR_APP_KEY>',
+                        'token':'appToken',
+                        'metadata':'androidMetadata',
+                        'projectId':'<YOUR_GOOGLE_PROJECT_ID>',
+                        'url':'https://ortc-developers.realtime.co/server/ssl/2.1/'
+                    })
+                    .then(function(){
+                         OrtcPushPlugin.log("Connected: ");
+                         var channel = document.getElementById('channel');
+                         OrtcPushPlugin.log("Trying to subscribe: " + channel.value);
+                         OrtcPushPlugin.subscribe({
+                            'channel':channel.value
+                         })
+                         .then(function (){
+                              var subcribed = document.getElementById('subcribed');
+                              subcribed.innerHTML = "subscribed: " + channel.value;
+                              OrtcPushPlugin.log("subscribed: " + channel.value);
+                          })
+                       });
                 }
             };
-        
+
         function cancelNotifications()
         {
             if(window.plugins && window.plugins.OrtcPushPlugin){
                 var OrtcPushPlugin = window.plugins.OrtcPushPlugin;
                 OrtcPushPlugin.log("Clearing notifications");
-                OrtcPushPlugin.cancelAllLocalNotifications(function(){
-                                                           alert('Notifications cleared')
-                                                           });
+                OrtcPushPlugin.cancelAllLocalNotifications()
+                .then(function(){
+                    alert('Notifications cleared')
+                 });
             }
         };
-        
+
         function sendMessage()
         {
             if(window.plugins && window.plugins.OrtcPushPlugin){
@@ -108,17 +114,18 @@
                 OrtcPushPlugin.send({'channel':channelSend.value,'message':messageSend.value});
             }
         };
-        
+
         document.addEventListener("push-notification", function(notification){
                                   window.plugins.OrtcPushPlugin.log("Push-Received  channel: " + notification.channel + " extra: " + notification.payload);
                                   var payload = document.getElementById('payload');
                                   payload.innerHTML = JSON.stringify( notification.payload );
                                   payload.value = JSON.stringify( notification.payload );
                                   }, false);
-                                  
+
         document.addEventListener("onException", function(exception){
                                   window.plugins.OrtcPushPlugin.log("onException: " + exception.description);
                                   }, false);
+
                                                     
             </script>
     </body>
